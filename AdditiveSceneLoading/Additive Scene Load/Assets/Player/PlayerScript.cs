@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
 {
     public float speed;
     public int scene;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +19,12 @@ public class PlayerScript : MonoBehaviour
         // Control
         if (Input.GetKey(KeyCode.D)) {
             transform.position += Vector3.right * speed;
-        }
-
-        if (Input.GetKey(KeyCode.A)) {
+            animator.SetBool("Running", true);
+        } else if (Input.GetKey(KeyCode.A)) {
             transform.position += Vector3.left * speed;
+            animator.SetBool("Running", true);
+        } else {
+            animator.SetBool("Running", false);
         }
     }
 }
