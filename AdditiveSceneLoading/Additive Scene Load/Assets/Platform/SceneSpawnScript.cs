@@ -27,7 +27,6 @@ public class SceneSpawnScript : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         var rootObject = scene.GetRootGameObjects()[0];
-        Debug.Log(rootObject.name);
         if (SceneManagerScript.GM.NextSceneSpot != null) {
             rootObject.transform.position = SceneManagerScript.GM.NextSceneSpot.position;
         }

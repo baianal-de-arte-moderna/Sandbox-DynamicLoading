@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
+    public float speed;
     public int scene;
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene(scene, LoadSceneMode.Additive);
     }
 
     // Update is called once per frame
@@ -17,11 +17,11 @@ public class PlayerScript : MonoBehaviour
     {
         // Control
         if (Input.GetKey(KeyCode.D)) {
-            transform.position += Vector3.right;
+            transform.position += Vector3.right * speed;
         }
 
         if (Input.GetKey(KeyCode.A)) {
-            transform.position += Vector3.left;
+            transform.position += Vector3.left * speed;
         }
     }
 }
