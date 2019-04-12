@@ -10,7 +10,8 @@ public class SceneManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GM == null) {
+        if (GM == null) 
+        {
             GM = this;
         }
         SceneManager.LoadScene(1, LoadSceneMode.Additive);

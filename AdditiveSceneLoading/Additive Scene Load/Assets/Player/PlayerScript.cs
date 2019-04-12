@@ -6,25 +6,77 @@ using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
     public float speed;
-    public int scene;
     public Animator animator;
-    // Start is called before the first frame update
+    public Rigidbody2D rigid;
+    public SpriteRenderer rend;
+    public bool alive;
+    ContactPoint2D[] points;
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
     void Start()
     {
+        animator.SetBool("Running", true);
+        alive = true;
+        points = new ContactPoint2D[10];
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         // Control
-        if (Input.GetKey(KeyCode.D)) {
-            transform.position += Vector3.right * speed;
-            animator.SetBool("Running", true);
-        } else if (Input.GetKey(KeyCode.A)) {
-            transform.position += Vector3.left * speed;
-            animator.SetBool("Running", true);
-        } else {
-            animator.SetBool("Running", false);
+        //if (Input.GetKey(KeyCode.D)) 
+        //{
+        //    rigid.velocity = new Vector2(speed, rigid.velocity.y);
+        //    animator.SetBool("Running", true);
+        //    rend.flipX = false;
+        //} 
+        //else if (Input.GetKey(KeyCode.A)) 
+        //{
+        //    rigid.velocity = new Vector2(-speed, rigid.velocity.y);
+        //    animator.SetBool("Running", true);
+        //    rend.flipX = true;
+        //} 
+        //else 
+        //{
+        //    animator.SetBool("Running", false);
+        //}
+        if (alive)
+        {
+            if (Input.GetKey(KeyCode.Space) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+            {
+                rigid.velocity = new Vector2(speed, speed * rigid.gravityScale / 2);
+                animator.SetTrigger("Jumping");
+            } 
+            else 
+            {
+                rigid.velocity = new Vector2(speed, rigid.velocity.y);
+            }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        other.GetContacts(points);
+        if (points[0].normal.y > 0)
+            animator.SetInteger("Grounded", animator.GetInteger("Grounded") + 1);
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        animator.SetInteger("Grounded", Mathf.Max(animator.GetInteger("Grounded") - 1, 0));
+    }
+
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Death")) {
+            alive = false;
+            rigid.gravityScale = 0;
+            // TODO: Load Main Scene
         }
     }
 }
