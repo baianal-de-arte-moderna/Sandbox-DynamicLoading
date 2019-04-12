@@ -8,12 +8,12 @@ public class CameraTestScript : MonoBehaviour
     void Update()
     {
         // JUST DON'T
-        float rand = Random.value * 2;
-        Camera.main.orthographicSize = Mathf.Lerp(
-            Camera.main.orthographicSize,
-            4 + rand,
-            0.05f
-        );
-        Camera.main.transform.Rotate(0f, 0f, rand - 1);
+        //float rand = Random.value * 2;
+        //Camera.main.orthographicSize = Mathf.Lerp(
+        //    Camera.main.orthographicSize,
+        //    4 + rand,
+        //    0.05f
+        //);
+        //Camera.main.transform.Rotate(0f, 0f, rand - 1);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneSpawnScript : MonoBehaviour
 {
-    const int sceneCount = 12;
+    const int sceneCount = 11;
     int nextScene;
     Collider2D collid;
     /// <summary>
@@ -19,7 +19,7 @@ public class SceneSpawnScript : MonoBehaviour
     /// </summary>
     void Start()
     {
-        nextScene = Mathf.FloorToInt(Random.value * sceneCount) + 2;
+        nextScene = Mathf.FloorToInt(Random.value * sceneCount) + 3;
         collid = GetComponent<Collider2D>();
     }
     void OnTriggerEnter2D(Collider2D other)

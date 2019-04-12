@@ -51,7 +51,11 @@ public class PlayerScript : MonoBehaviour
                 rigid.velocity = new Vector2(speed, speed * rigid.gravityScale / 2);
                 animator.SetTrigger("Jumping");
             } 
-            else 
+            else if (!Input.GetKey(KeyCode.Space) && isJumping && rigid.velocity.y > 0)
+            {
+                rigid.velocity = new Vector2(speed, 0f);
+            }
+            else
             {
                 rigid.velocity = new Vector2(speed, rigid.velocity.y);
             }
@@ -90,7 +94,7 @@ public class PlayerScript : MonoBehaviour
         if (other.CompareTag("Death")) {
             alive = false;
             rigid.gravityScale = 0;
-            // TODO: Load Main Scene
+            SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Additive);
         }
     }
 }
