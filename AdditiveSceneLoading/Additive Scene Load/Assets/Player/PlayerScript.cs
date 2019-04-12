@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour
     public SpriteRenderer rend;
     public bool alive;
     ContactPoint2D[] points;
+    public int coyoteTime;
+    int coyoteTimeCounter;
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
@@ -20,6 +22,7 @@ public class PlayerScript : MonoBehaviour
         animator.SetBool("Running", true);
         alive = true;
         points = new ContactPoint2D[10];
+        coyoteTimeCounter = coyoteTime;
     }
     void FixedUpdate()
     {
@@ -42,7 +45,8 @@ public class PlayerScript : MonoBehaviour
         //}
         if (alive)
         {
-            if (Input.GetKey(KeyCode.Space) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+            var isJumping = animator.GetCurrentAnimatorStateInfo(0).IsName("Jump");
+            if (Input.GetKey(KeyCode.Space) && !isJumping)
             {
                 rigid.velocity = new Vector2(speed, speed * rigid.gravityScale / 2);
                 animator.SetTrigger("Jumping");
@@ -50,6 +54,16 @@ public class PlayerScript : MonoBehaviour
             else 
             {
                 rigid.velocity = new Vector2(speed, rigid.velocity.y);
+            }
+            if (animator.GetInteger("Grounded") == 0 && !isJumping) {
+                coyoteTimeCounter--;
+                if (coyoteTimeCounter <= 0) {
+                    animator.SetTrigger("Jumping");
+                }
+            } 
+            else
+            {
+                coyoteTimeCounter = coyoteTime;
             }
         }
     }
