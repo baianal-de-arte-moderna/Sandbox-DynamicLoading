@@ -30,23 +30,6 @@ public class PlayerScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        // Controls
-        //if (Input.GetKey(KeyCode.D)) 
-        //{
-        //    rigid.velocity = new Vector2(speed, rigid.velocity.y);
-        //    animator.SetBool("Running", true);
-        //    rend.flipX = false;
-        //} 
-        //else if (Input.GetKey(KeyCode.A)) 
-        //{
-        //    rigid.velocity = new Vector2(-speed, rigid.velocity.y);
-        //    animator.SetBool("Running", true);
-        //    rend.flipX = true;
-        //} 
-        //else 
-        //{
-        //    animator.SetBool("Running", false);
-        //}
         if (alive)
         {
             var isJumping = animator.GetCurrentAnimatorStateInfo(0).IsName("Jump");
@@ -61,7 +44,25 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                rigid.velocity = new Vector2(speed, rigid.velocity.y);
+                // Auto-Run
+                // rigid.velocity = new Vector2(speed, rigid.velocity.y);
+                // Controls
+                if (Input.GetKey(KeyCode.D)) 
+                {
+                   rigid.velocity = new Vector2(speed, rigid.velocity.y);
+                   animator.SetBool("Running", true);
+                   rend.flipX = false;
+                } 
+                else if (Input.GetKey(KeyCode.A)) 
+                {
+                   rigid.velocity = new Vector2(-speed, rigid.velocity.y);
+                   animator.SetBool("Running", true);
+                   rend.flipX = true;
+                } 
+                else 
+                {
+                   animator.SetBool("Running", false);
+                }
             }
             if (animator.GetInteger("Grounded") == 0 && !isJumping) {
                 coyoteTimeCounter--;
