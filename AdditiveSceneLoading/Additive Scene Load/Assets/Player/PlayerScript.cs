@@ -13,20 +13,24 @@ public class PlayerScript : MonoBehaviour
     ContactPoint2D[] points;
     public int coyoteTime;
     int coyoteTimeCounter;
+    public float startDelay;
+    public float spawnDelay;
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
     /// </summary>
     void Start()
     {
-        animator.SetBool("Running", true);
-        alive = true;
+        animator.SetBool("Running", false);
+        alive = false;
         points = new ContactPoint2D[10];
         coyoteTimeCounter = coyoteTime;
+        Invoke("Go", startDelay);
+        Invoke("Spawn", spawnDelay);
     }
     void FixedUpdate()
     {
-        // Control
+        // Controls
         //if (Input.GetKey(KeyCode.D)) 
         //{
         //    rigid.velocity = new Vector2(speed, rigid.velocity.y);
@@ -70,6 +74,16 @@ public class PlayerScript : MonoBehaviour
                 coyoteTimeCounter = coyoteTime;
             }
         }
+    }
+
+    void Go() {
+        alive = true;
+        animator.SetBool("Running", true);
+    }
+
+    void Spawn() {
+        rend.enabled = true;
+        animator.SetBool("Running", false);
     }
 
     void OnCollisionEnter2D(Collision2D other)

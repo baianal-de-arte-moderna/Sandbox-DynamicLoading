@@ -14,7 +14,11 @@ public class SceneManagerScript : MonoBehaviour
         {
             GM = this;
         }
+        // BG
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        // Platform
         SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        // Animation
+        SceneManager.LoadScene(15, LoadSceneMode.Additive);
     }
 }

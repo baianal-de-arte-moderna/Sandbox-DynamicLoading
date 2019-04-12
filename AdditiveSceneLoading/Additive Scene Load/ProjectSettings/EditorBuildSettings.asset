@@ -47,4 +47,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Platform 11/Platform11Scene.unity
     guid: 58492a8dad8270d4cb2fdd9939a9a500
+  - enabled: 1
+    path: Assets/Game Over/GameOver.unity
+    guid: ff00aece8a3775941a1f06673693e094
+  - enabled: 1
+    path: Assets/Start Animation/StartAnimationScene.unity
+    guid: 1fa2e2689b15a284397731a88d133e1a
   m_configObjects: {}
