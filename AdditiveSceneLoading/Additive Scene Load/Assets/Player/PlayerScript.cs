@@ -49,19 +49,22 @@ public class PlayerScript : MonoBehaviour
                 // Controls
                 if (Input.GetKey(KeyCode.D)) 
                 {
-                   rigid.velocity = new Vector2(speed, rigid.velocity.y);
-                   animator.SetBool("Running", true);
-                   rend.flipX = false;
+                    rigid.velocity = new Vector2(speed, rigid.velocity.y);
+                    animator.SetBool("Running", true);
+                    rend.flipX = false;
                 } 
                 else if (Input.GetKey(KeyCode.A)) 
                 {
-                   rigid.velocity = new Vector2(-speed, rigid.velocity.y);
-                   animator.SetBool("Running", true);
-                   rend.flipX = true;
+                    rigid.velocity = new Vector2(-speed, rigid.velocity.y);
+                    animator.SetBool("Running", true);
+                    rend.flipX = true;
                 } 
                 else 
                 {
-                   animator.SetBool("Running", false);
+                    rigid.velocity = new Vector2(
+                        Mathf.Lerp(rigid.velocity.x, 0f, 0.1f),
+                        rigid.velocity.y);
+                    animator.SetBool("Running", false);
                 }
             }
             if (animator.GetInteger("Grounded") == 0 && !isJumping) {
