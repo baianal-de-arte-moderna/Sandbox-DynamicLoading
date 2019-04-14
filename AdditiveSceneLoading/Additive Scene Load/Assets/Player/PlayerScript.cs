@@ -9,8 +9,10 @@ public class PlayerScript : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rigid;
     public SpriteRenderer rend;
+    public Collider2D feet;
     public bool alive;
-    ContactPoint2D[] points;
+    Collider2D[] points;
+    ContactFilter2D filter;
     public int coyoteTime;
     int coyoteTimeCounter;
     public float startDelay;
@@ -23,8 +25,12 @@ public class PlayerScript : MonoBehaviour
     {
         animator.SetBool("Running", false);
         alive = false;
-        points = new ContactPoint2D[10];
         coyoteTimeCounter = coyoteTime;
+
+        points = new Collider2D[10];
+        // Only Down Collisions
+        filter.SetNormalAngle(90f, 90f);
+        
         Invoke("Go", startDelay);
         Invoke("Spawn", spawnDelay);
     }
@@ -32,15 +38,17 @@ public class PlayerScript : MonoBehaviour
     {
         if (alive)
         {
-            var isJumping = animator.GetCurrentAnimatorStateInfo(0).IsName("Jump");
-            if (Input.GetKey(KeyCode.Space) && !isJumping)
+            var grounded = feet.GetContacts(filter, points);
+            animator.SetInteger("Grounded", grounded);
+
+            if (Input.GetKey(KeyCode.Space) && grounded > 0)
             {
-                rigid.velocity = new Vector2(speed, speed * rigid.gravityScale / 2);
+                rigid.velocity = new Vector2(rigid.velocity.x, speed * rigid.gravityScale / 2);
                 animator.SetTrigger("Jumping");
             } 
-            else if (!Input.GetKey(KeyCode.Space) && isJumping && rigid.velocity.y > 0)
+            else if (!Input.GetKey(KeyCode.Space) && grounded == 0 && rigid.velocity.y > 0)
             {
-                rigid.velocity = new Vector2(speed, 0f);
+                rigid.velocity = new Vector2(rigid.velocity.x, 0f);
             }
             else
             {
@@ -67,7 +75,7 @@ public class PlayerScript : MonoBehaviour
                     animator.SetBool("Running", false);
                 }
             }
-            if (animator.GetInteger("Grounded") == 0 && !isJumping) {
+            if (grounded == 0) {
                 coyoteTimeCounter--;
                 if (coyoteTimeCounter <= 0) {
                     animator.SetTrigger("Jumping");
@@ -82,7 +90,6 @@ public class PlayerScript : MonoBehaviour
 
     void Go() {
         alive = true;
-        animator.SetBool("Running", true);
     }
 
     void Spawn() {
@@ -90,25 +97,6 @@ public class PlayerScript : MonoBehaviour
         animator.SetBool("Running", false);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        other.GetContacts(points);
-        if (points[0].normal.y > 0)
-            animator.SetInteger("Grounded", animator.GetInteger("Grounded") + 1);
-    }
-
-    void OnCollisionExit2D(Collision2D other)
-    {
-        other.GetContacts(points);
-        if (points[0].normal.y > 0)
-            animator.SetInteger("Grounded", Mathf.Max(animator.GetInteger("Grounded") - 1, 0));
-    }
-
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Death")) {

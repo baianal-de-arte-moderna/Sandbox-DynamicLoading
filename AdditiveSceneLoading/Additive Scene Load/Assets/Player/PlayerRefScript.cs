@@ -30,14 +30,15 @@ public class PlayerRefScript : MonoBehaviour
             targetX = baseX;
         }
         offset.x = Mathf.Lerp(offset.x, targetX, 0.015f);
-        
+
         var newPos = new Vector3 
         (
             (player.position.x + offset.x) * scale.x,
             (player.position.y + offset.y) * scale.y,
             player.position.z
         );
-        if (newPos.x > minPos.x)
-            transform.position = newPos;
+        if (newPos.x < minPos.x)
+            newPos.x = minPos.x;
+        transform.position = newPos;
     }
 }
