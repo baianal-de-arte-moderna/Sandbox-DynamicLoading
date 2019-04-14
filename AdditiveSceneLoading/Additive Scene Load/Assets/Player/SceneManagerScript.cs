@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoBehaviour
 {
+    public enum GameStyles {
+        PLATFORM_STYLE,
+        LEVEL_STYLE
+    }
     public static SceneManagerScript GM;
     public Transform NextSceneSpot;
+    public GameStyles GameStyle;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,11 +19,19 @@ public class SceneManagerScript : MonoBehaviour
         {
             GM = this;
         }
-        // BG
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
-        // Platform
-        SceneManager.LoadScene(2, LoadSceneMode.Additive);
         // Animation
         SceneManager.LoadScene(15, LoadSceneMode.Additive);
+        if (GameStyle == GameStyles.PLATFORM_STYLE)
+        {
+            // BG
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            // Platform
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        }
+        else
+        {
+            // Level
+            SceneManager.LoadScene(16, LoadSceneMode.Additive);
+        }
     }
 }

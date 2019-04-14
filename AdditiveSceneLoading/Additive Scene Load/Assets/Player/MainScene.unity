@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextSceneSpot: {fileID: 0}
+  GameStyle: 0
 --- !u!4 &112086848
 Transform:
   m_ObjectHideFlags: 0

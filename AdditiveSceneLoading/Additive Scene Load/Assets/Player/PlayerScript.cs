@@ -99,7 +99,9 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D other)
     {
-        animator.SetInteger("Grounded", Mathf.Max(animator.GetInteger("Grounded") - 1, 0));
+        other.GetContacts(points);
+        if (points[0].normal.y > 0)
+            animator.SetInteger("Grounded", Mathf.Max(animator.GetInteger("Grounded") - 1, 0));
     }
 
     /// <summary>

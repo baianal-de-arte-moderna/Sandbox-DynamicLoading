@@ -9,43 +9,43 @@ EditorBuildSettings:
     path: Assets/Player/MainScene.unity
     guid: 786175a1b88d37444b0b5e21bfa3a12a
   - enabled: 1
-    path: Assets/Background/bgScene.unity
+    path: Assets/PlatformSpawnStyle/Background/bgScene.unity
     guid: 3889489c41a31264e9f6272db00c3416
   - enabled: 1
-    path: Assets/Platform 0/Platform0Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 0/Platform0Scene.unity
     guid: f619ac10031f5d14bbb22ebae8d1e302
   - enabled: 1
-    path: Assets/Platform 1/Platform1Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 1/Platform1Scene.unity
     guid: f299fe1b747feb94680c911a823e7090
   - enabled: 1
-    path: Assets/Platform 2/Platform2Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 2/Platform2Scene.unity
     guid: e842966d8439f5a4b86af5924dbe2c5d
   - enabled: 1
-    path: Assets/Platform 3/Platform3Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 3/Platform3Scene.unity
     guid: bae3c01a7efcc7b449850a658890bad3
   - enabled: 1
-    path: Assets/Platform 4/Platform4Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 4/Platform4Scene.unity
     guid: a98e132343784d24db0f56340aef1a24
   - enabled: 1
-    path: Assets/Platform 5/Platform5Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 5/Platform5Scene.unity
     guid: af81b2b494766dc4ba4800ac0d8542d7
   - enabled: 1
-    path: Assets/Platform 6/Platform6Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 6/Platform6Scene.unity
     guid: fb1aa56dd803f414c98b522024608a26
   - enabled: 1
-    path: Assets/Platform 7/Platform7Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 7/Platform7Scene.unity
     guid: 4fd31f623a548934e950f919373ff588
   - enabled: 1
-    path: Assets/Platform 8/Platform8Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 8/Platform8Scene.unity
     guid: 663369f5683d529488b85e3396b201ee
   - enabled: 1
-    path: Assets/Platform 9/Platform9Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 9/Platform9Scene.unity
     guid: c48bb43ebca6d8d4dba896fb4580cd9c
   - enabled: 1
-    path: Assets/Platform 10/Platform10Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 10/Platform10Scene.unity
     guid: 0d23b1fff7b348143a186f8f01699b50
   - enabled: 1
-    path: Assets/Platform 11/Platform11Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform 11/Platform11Scene.unity
     guid: 58492a8dad8270d4cb2fdd9939a9a500
   - enabled: 1
     path: Assets/Game Over/GameOver.unity
@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Start Animation/StartAnimationScene.unity
     guid: 1fa2e2689b15a284397731a88d133e1a
+  - enabled: 1
+    path: Assets/LevelStyle/Level 1/Level 1.unity
+    guid: ade75733025159e4db71afbd0c485736
   m_configObjects: {}
