@@ -7,6 +7,17 @@ public class BgScript : MonoBehaviour
     public Transform MyReference;
     public Transform SpawnReference;
 
+    float distance;
+
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        distance = Mathf.Abs(SpawnReference.position.x - MyReference.position.x) * 2;
+    }
+
     /// <summary>
     /// OnBecameVisible is called when the renderer became visible by any camera.
     /// </summary>
@@ -22,8 +33,10 @@ public class BgScript : MonoBehaviour
         #if UNITY_EDITOR
         if(Camera.current && Camera.current.name == "SceneCamera") return;
         #endif
-        if (SpawnReference && MyReference) {
-            transform.position += Vector3.right * 2 * (SpawnReference.position.x - MyReference.position.x);
+        if (Camera.main.transform.position.x > transform.position.x) {
+            transform.position += Vector3.right * distance;
+        } else {
+            transform.position += Vector3.left * distance;
         }
     }
 
