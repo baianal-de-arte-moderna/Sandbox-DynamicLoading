@@ -17,12 +17,18 @@ public class PlayerScript : MonoBehaviour
     int coyoteTimeCounter;
     public float startDelay;
     public float spawnDelay;
+    public float shotDelay;
+    float shotCooldown;
     public Transform Weapon;
+    public GameObject Bullet;
+    int grounded;
     void Start()
     {
         animator.SetBool("Running", false);
         alive = false;
         coyoteTimeCounter = coyoteTime;
+        shotCooldown = shotDelay;
+        grounded = 0;
 
         points = new Collider2D[10];
         // Only Down Collisions
@@ -35,11 +41,18 @@ public class PlayerScript : MonoBehaviour
     {
         if (alive)
         {
-            var grounded = feet.GetContacts(filter, points);
+            grounded = feet.GetContacts(filter, points);
             animator.SetInteger("Grounded", grounded);            
 
             // Shooting
-            animator.SetBool("Shooting", Input.GetKey(KeyCode.K));
+            bool shooting = Input.GetKey(KeyCode.K);
+            animator.SetBool("Shooting", shooting);
+
+            shotCooldown += Time.deltaTime;
+            if (shooting && shotCooldown > shotDelay) {
+                shotCooldown = 0f;
+                Shoot(Bullet);
+            }
 
             if (Input.GetKey(KeyCode.Space) && grounded > 0)
             {
@@ -98,9 +111,12 @@ public class PlayerScript : MonoBehaviour
 
     public void Shoot(GameObject bullet) 
     {
+        var position = rend.flipX? Weapon.position + Vector3.left * 1.5f:Weapon.position;
+        if (grounded == 0)
+            position += Vector3.up * 0.4f;
         var newBullet = Instantiate(
             bullet,
-            rend.flipX? Weapon.position + Vector3.left * 2:Weapon.position,
+            position,
             Quaternion.identity
         );
         newBullet.GetComponent<BulletScript>().Shoot(rend.flipX? Vector2.left:Vector2.right, speed * 2);
