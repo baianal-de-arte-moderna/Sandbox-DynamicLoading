@@ -17,10 +17,7 @@ public class PlayerScript : MonoBehaviour
     int coyoteTimeCounter;
     public float startDelay;
     public float spawnDelay;
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
+    public Transform Weapon;
     void Start()
     {
         animator.SetBool("Running", false);
@@ -97,6 +94,16 @@ public class PlayerScript : MonoBehaviour
 
     void Spawn() {
         rend.enabled = true;
+    }
+
+    public void Shoot(GameObject bullet) 
+    {
+        var newBullet = Instantiate(
+            bullet,
+            rend.flipX? Weapon.position + Vector3.left * 2:Weapon.position,
+            Quaternion.identity
+        );
+        newBullet.GetComponent<BulletScript>().Shoot(rend.flipX? Vector2.left:Vector2.right, speed * 2);
     }
 
     void OnTriggerEnter2D(Collider2D other)
