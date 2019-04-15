@@ -33,10 +33,17 @@ public class BgScript : MonoBehaviour
         #if UNITY_EDITOR
         if(Camera.current && Camera.current.name == "SceneCamera") return;
         #endif
-        if (Camera.main.transform.position.x > transform.position.x) {
-            transform.position += Vector3.right * distance;
-        } else {
-            transform.position += Vector3.left * distance;
+        try
+        {
+            if (Camera.main.transform.position.x > transform.position.x) {
+                transform.position += Vector3.right * distance;
+            } else {
+                transform.position += Vector3.left * distance;
+            }
+        }
+        catch (System.NullReferenceException) 
+        {
+            return;
         }
     }
 

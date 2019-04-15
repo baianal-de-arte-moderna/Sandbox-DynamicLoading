@@ -39,7 +39,10 @@ public class PlayerScript : MonoBehaviour
         if (alive)
         {
             var grounded = feet.GetContacts(filter, points);
-            animator.SetInteger("Grounded", grounded);
+            animator.SetInteger("Grounded", grounded);            
+
+            // Shooting
+            animator.SetBool("Shooting", Input.GetKey(KeyCode.K));
 
             if (Input.GetKey(KeyCode.Space) && grounded > 0)
             {
@@ -94,7 +97,6 @@ public class PlayerScript : MonoBehaviour
 
     void Spawn() {
         rend.enabled = true;
-        animator.SetBool("Running", false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
