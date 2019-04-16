@@ -16,13 +16,15 @@ public class SceneSpawnScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         collid.enabled = false;
-        SceneManager.sceneLoaded += OnPlatformSceneLoaded;
         SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
     }
-
-    void OnPlatformSceneLoaded(Scene scene, LoadSceneMode mode)
+    void OnEnable()
     {
-        SceneManager.sceneLoaded -= OnPlatformSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         var rootObject = scene.GetRootGameObjects()[0];
         if (SceneManagerScript.GM) 
         {
