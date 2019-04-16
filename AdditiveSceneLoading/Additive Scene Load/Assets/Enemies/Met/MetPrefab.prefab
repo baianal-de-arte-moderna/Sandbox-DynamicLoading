@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 282156308208859390}
   rigid: {fileID: 282156308208859388}
+  Bullet: {fileID: 1856934495682523749, guid: 42e57a3bb5ed65741accfed69d8a541b, type: 3}
 --- !u!114 &662025323
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class MetScript : MonoBehaviour
 {
     public Animator animator;
     public Rigidbody2D rigid;
+    public GameObject Bullet;
     Transform trans;
     Collider2D[] points;
     bool walk;
@@ -59,7 +60,12 @@ public class MetScript : MonoBehaviour
 
     public void Shoot() 
     {
-        Debug.Log("Met Shot");
+        var newBullet = Instantiate(
+            Bullet,
+            trans.position + Vector3.up * 0.4f,
+            Quaternion.identity
+        );
+        newBullet.GetComponent<BulletScript>().Shoot(Vector2.left, 6f);
     }
 
     public void RandomizeNextAction()
