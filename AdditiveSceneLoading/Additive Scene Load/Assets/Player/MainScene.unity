@@ -277,9 +277,10 @@ GameObject:
   - component: {fileID: 432508667}
   - component: {fileID: 432508670}
   - component: {fileID: 432508671}
+  - component: {fileID: 432508672}
   m_Layer: 9
   m_Name: TaOmA
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -438,6 +439,20 @@ MonoBehaviour:
   shotDelay: 0.33
   Weapon: {fileID: 1581603240}
   Bullet: {fileID: 1856934495682523749, guid: 7ea68012c5a157f4a92386108a2b5df4, type: 3}
+  status: {fileID: 432508672}
+--- !u!114 &432508672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432508665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7f5b9e8715bf345aa29ff24c61e2cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
 --- !u!1 &1581603239
 GameObject:
   m_ObjectHideFlags: 0

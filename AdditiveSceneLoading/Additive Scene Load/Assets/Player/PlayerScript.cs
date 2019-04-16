@@ -22,6 +22,7 @@ public class PlayerScript : MonoBehaviour
     public Transform Weapon;
     public GameObject Bullet;
     int grounded;
+    public PlayerStatusScript status;
     void Start()
     {
         animator.SetBool("Running", false);
@@ -29,6 +30,8 @@ public class PlayerScript : MonoBehaviour
         coyoteTimeCounter = coyoteTime;
         shotCooldown = shotDelay;
         grounded = 0;
+
+        status.onHealthChange += HealthChange;
 
         points = new Collider2D[10];
         // Only Down Collisions
@@ -104,11 +107,9 @@ public class PlayerScript : MonoBehaviour
     void Go() {
         alive = true;
     }
-
     void Spawn() {
         rend.enabled = true;
     }
-
     public void Shoot(GameObject bullet) 
     {
         var position = rend.flipX? Weapon.position + Vector3.left * 1.5f:Weapon.position;
@@ -121,13 +122,23 @@ public class PlayerScript : MonoBehaviour
         );
         newBullet.GetComponent<BulletScript>().Shoot(rend.flipX? Vector2.left:Vector2.right, speed * 2);
     }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Death")) {
-            alive = false;
-            rigid.gravityScale = 0;
-            SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Additive);
+            Die();
         }
+    }
+    public void Die()
+    {
+        alive = false;
+        rigid.gravityScale = 0;
+        SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Additive);
+    }
+
+    void HealthChange(int newHp) 
+    {
+        // TODO: Death Animation
+        if (newHp <= 0)
+            Die();
     }
 }

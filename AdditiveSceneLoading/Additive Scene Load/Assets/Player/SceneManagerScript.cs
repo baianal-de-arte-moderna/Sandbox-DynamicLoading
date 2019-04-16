@@ -21,12 +21,16 @@ public class SceneManagerScript : MonoBehaviour
         }
         // Animation
         SceneManager.LoadScene(15, LoadSceneMode.Additive);
+        // UI
+        SceneManager.LoadScene(18, LoadSceneMode.Additive);
         if (GameStyle == GameStyles.PLATFORM_STYLE)
         {
             // BG
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
             // Platform
             SceneManager.LoadScene(2, LoadSceneMode.Additive);
+            // First Enemy
+            SceneManager.LoadScene(17, LoadSceneMode.Additive);
         }
         else
         {

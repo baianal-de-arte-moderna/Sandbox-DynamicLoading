@@ -39,7 +39,8 @@ public class EnemyStatusScript : MonoBehaviour
     {
         if (other.collider.CompareTag("PlayerBullet"))
         {
-            hp--;
+            var bulletPower = other.collider.GetComponent<BulletData>().power;
+            hp -= bulletPower;
         }
     }
 }

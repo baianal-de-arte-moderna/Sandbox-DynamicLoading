@@ -48,7 +48,7 @@ EditorBuildSettings:
     path: Assets/PlatformSpawnStyle/Platform 11/Platform11Scene.unity
     guid: 58492a8dad8270d4cb2fdd9939a9a500
   - enabled: 1
-    path: Assets/Game Over/GameOver.unity
+    path: Assets/UI/Game Over/GameOver.unity
     guid: ff00aece8a3775941a1f06673693e094
   - enabled: 1
     path: Assets/Start Animation/StartAnimationScene.unity
@@ -56,4 +56,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/LevelStyle/Level 1/Level 1.unity
     guid: ade75733025159e4db71afbd0c485736
+  - enabled: 1
+    path: Assets/Enemies/Met/MetScene.unity
+    guid: 8a85aa3b3583a8a46b6cd86cb70f7903
+  - enabled: 1
+    path: Assets/UI/In Game/InGameUI.unity
+    guid: 3cf8b0690c805584495af738315f73d4
   m_configObjects: {}
