@@ -29,8 +29,6 @@ public class SceneManagerScript : MonoBehaviour
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
             // Platform
             SceneManager.LoadScene(2, LoadSceneMode.Additive);
-            // First Enemy
-            SceneManager.LoadScene(17, LoadSceneMode.Additive);
         }
         else
         {
