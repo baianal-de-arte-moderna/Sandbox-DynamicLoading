@@ -18,7 +18,7 @@ public class UIPlayerHealthScript : MonoBehaviour
                 status.onHealthChange += HealthChange;
         }
     }
-    void HealthChange(int newValue)
+    void HealthChange(int newValue, int oldValue)
     {
         healthBar.value = newValue;
     }

@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class PlayerStatusScript : MonoBehaviour
 {
-    public delegate void HealthChanged(int newValue);
+    public delegate void HealthChanged(int newValue, int oldValue);
     public int hp;
     public HealthChanged onHealthChange;
+    public bool invul;
     
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.CompareTag("EnemyBullet"))
+        if (!invul)
         {
-            var bulletPower = other.collider.GetComponent<BulletData>().power;
-            hp -= bulletPower;
-            if (onHealthChange != null) 
+            var oldHp = hp;
+            if (other.collider.CompareTag("EnemyBullet"))
             {
-                onHealthChange(hp);
-            }
-        } else if (other.collider.CompareTag("Enemy"))
-        {
-            hp -= 10;
-            if (onHealthChange != null) 
+                var bulletPower = other.collider.GetComponent<BulletData>().power;
+                hp -= bulletPower;
+                if (onHealthChange != null) 
+                {
+                    onHealthChange(hp, oldHp);
+                }
+            } else if (other.collider.CompareTag("Enemy"))
             {
-                onHealthChange(hp);
+                hp -= 10;
+                if (onHealthChange != null) 
+                {
+                    onHealthChange(hp, oldHp);
+                }
             }
         }
     }

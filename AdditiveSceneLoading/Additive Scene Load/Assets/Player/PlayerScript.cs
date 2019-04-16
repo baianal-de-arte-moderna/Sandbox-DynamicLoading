@@ -130,15 +130,30 @@ public class PlayerScript : MonoBehaviour
     }
     public void Die()
     {
+        // TODO: Death Animation
         alive = false;
         rigid.gravityScale = 0;
         SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Additive);
     }
 
-    void HealthChange(int newHp) 
+    public void EndHittedAnimation() 
     {
-        // TODO: Death Animation
+        alive = true;
+        status.invul = false;
+    }
+
+    void HealthChange(int newHp, int oldHp) 
+    {
         if (newHp <= 0)
             Die();
+        else if (oldHp > newHp) {
+            alive = false;
+            status.invul = true;
+            if (rend.flipX)
+                rigid.velocity = new Vector2(speed, speed);
+            else
+                rigid.velocity = new Vector2(-speed, speed);
+            animator.SetTrigger("Hitted");
+        }
     }
 }
