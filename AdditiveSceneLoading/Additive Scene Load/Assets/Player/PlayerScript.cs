@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody2D rigid;
     public SpriteRenderer rend;
     public Collider2D feet;
+    public ParticleSystem deathParticles;
     public bool alive;
     Collider2D[] points;
     ContactFilter2D filter;
@@ -130,7 +131,8 @@ public class PlayerScript : MonoBehaviour
     }
     public void Die()
     {
-        // TODO: Death Animation
+        rend.enabled = false;
+        deathParticles.Play();
         alive = false;
         rigid.gravityScale = 0;
         SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Additive);

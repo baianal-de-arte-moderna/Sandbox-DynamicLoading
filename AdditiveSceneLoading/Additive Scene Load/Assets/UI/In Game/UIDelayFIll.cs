@@ -56,8 +56,8 @@ public class UIDelayFIll : MonoBehaviour
                     speed
                 );
 
-                if (Vector2.Distance(targetAnchorMax, thisFill.anchorMax) < 0.01f &&
-                    Vector2.Distance(targetAnchorMin, thisFill.anchorMin) < 0.01f)
+                if (Vector2.Distance(targetAnchorMax, thisFill.anchorMax) < 0.001f &&
+                    Vector2.Distance(targetAnchorMin, thisFill.anchorMin) < 0.001f)
                 {
                     triggered = false;
                 }
