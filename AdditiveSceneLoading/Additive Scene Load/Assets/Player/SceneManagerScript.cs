@@ -32,6 +32,8 @@ public class SceneManagerScript : MonoBehaviour
         SceneManager.LoadScene(15, LoadSceneMode.Additive);
         // UI
         SceneManager.LoadScene(18, LoadSceneMode.Additive);
+        // Ready Animation
+        SceneManager.LoadScene(21, LoadSceneMode.Additive);
         if (GameStyle == GameStyles.PLATFORM_STYLE)
         {
             // BG
