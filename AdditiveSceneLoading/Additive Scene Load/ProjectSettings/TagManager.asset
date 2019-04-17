@@ -8,6 +8,7 @@ TagManager:
   - PlayerBullet
   - EnemyBullet
   - Enemy
+  - Scrap
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - PlayerBullet
   - Enemies
   - EnemyBullet
-  - 
-  - 
+  - Scrap
+  - ScrapCollider
   - 
   - 
   - 

@@ -453,6 +453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  scrapTotal: 0
+  invul: 0
 --- !u!1 &1581603239
 GameObject:
   m_ObjectHideFlags: 0

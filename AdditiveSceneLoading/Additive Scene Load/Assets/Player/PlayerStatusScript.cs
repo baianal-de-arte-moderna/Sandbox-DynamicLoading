@@ -5,8 +5,15 @@ using UnityEngine;
 public class PlayerStatusScript : MonoBehaviour
 {
     public delegate void HealthChanged(int newValue, int oldValue);
+    public delegate void ScrapChanged(int newValue, int oldValue);
+
+    [Range(0, 100)]
     public int hp;
+    
+    [Range(0, 100)]
+    public int scrapTotal;
     public HealthChanged onHealthChange;
+    public ScrapChanged onScrapChange;
     public bool invul;
     
     void OnCollisionEnter2D(Collision2D other)
@@ -29,6 +36,20 @@ public class PlayerStatusScript : MonoBehaviour
                 {
                     onHealthChange(hp, oldHp);
                 }
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Scrap"))
+        {
+            var oldScrap = scrapTotal;
+            var scrapAmount = other.GetComponent<ScrapData>().value;
+            scrapTotal += scrapAmount;
+            if (onScrapChange != null)
+            {
+                onScrapChange(scrapTotal, oldScrap);
             }
         }
     }
