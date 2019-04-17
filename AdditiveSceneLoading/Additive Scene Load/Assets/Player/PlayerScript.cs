@@ -37,17 +37,17 @@ public class PlayerScript : MonoBehaviour
         points = new Collider2D[10];
         // Only Down Collisions
         filter.SetNormalAngle(90f, 90f);
+        filter.SetLayerMask(LayerMask.GetMask("Default"));
         
         Invoke("Go", startDelay);
         Invoke("Spawn", spawnDelay);
     }
     void FixedUpdate()
     {
+        grounded = feet.GetContacts(filter, points);
+        animator.SetInteger("Grounded", grounded); 
         if (alive)
         {
-            grounded = feet.GetContacts(filter, points);
-            animator.SetInteger("Grounded", grounded);            
-
             // Shooting
             bool shooting = Input.GetKey(KeyCode.K);
             animator.SetBool("Shooting", shooting);
@@ -134,12 +134,20 @@ public class PlayerScript : MonoBehaviour
         rend.enabled = false;
         deathParticles.Play();
         alive = false;
+        rigid.velocity = Vector2.zero;
         rigid.gravityScale = 0;
+        Invoke("GameOver", 1.5f);
+    }
+
+    public void GameOver()
+    {
+        alive = false;
         SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Additive);
     }
 
     public void EndHittedAnimation() 
     {
+        animator.SetBool("Hitted", false);
         alive = true;
         status.invul = false;
     }
@@ -155,7 +163,9 @@ public class PlayerScript : MonoBehaviour
                 rigid.velocity = new Vector2(speed, speed);
             else
                 rigid.velocity = new Vector2(-speed, speed);
-            animator.SetTrigger("Hitted");
+            animator.SetBool("Hitted", true);
+            //animator.SetBool("Running", false);
+            //animator.SetBool("Shooting", false);
         }
     }
 }
