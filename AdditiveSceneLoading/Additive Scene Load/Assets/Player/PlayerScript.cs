@@ -126,7 +126,7 @@ public class PlayerScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Death")) {
-            Die();
+            status.onHealthChange(0, 1);
         }
     }
     public void Die()
@@ -152,7 +152,7 @@ public class PlayerScript : MonoBehaviour
         status.invul = false;
     }
 
-    void HealthChange(int newHp, int oldHp) 
+    void HealthChange(int newHp, int oldHp)
     {
         if (newHp <= 0)
             Die();
