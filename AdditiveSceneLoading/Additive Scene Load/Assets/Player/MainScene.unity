@@ -142,6 +142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextSceneSpot: {fileID: 0}
+  EnemyList: 110000001300000014000000
+  SpawnRate:
+  - 0.705
+  - 0.302
+  - 0.554
   GameStyle: 0
 --- !u!4 &112086848
 Transform:
@@ -5265,7 +5270,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.041276455, y: -5.2414064}
+  m_Offset: {x: 0.04127693, y: -5.509492}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5276,7 +5281,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17.575352, y: 0.30215263}
+  m_Size: {x: 17.575352, y: 0.8383236}
   m_EdgeRadius: 0
 --- !u!1 &1831846043
 GameObject:

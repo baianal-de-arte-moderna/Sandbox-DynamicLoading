@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class BgScript : MonoBehaviour
 {
-    public Transform MyReference;
-    public Transform SpawnReference;
+    public Transform[] BgList;
 
-    float distance;
+    Camera mainCamera;
+    Vector3 movement;
 
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
+    float bgSize;
+
     void Start()
     {
-        distance = Mathf.Abs(SpawnReference.position.x - MyReference.position.x) * 2;
+        int bgCount = BgList.Length;
+        bgSize = Mathf.Abs(BgList[0].position.x - BgList[1].position.x);
+        mainCamera = Camera.main;
+        movement = Vector3.right * bgSize;
     }
 
-    /// <summary>
-    /// OnBecameVisible is called when the renderer became visible by any camera.
-    /// </summary>
     void OnBecameVisible()
     {
         #if UNITY_EDITOR
@@ -35,13 +33,15 @@ public class BgScript : MonoBehaviour
         #endif
         try
         {
-            if (Camera.main.transform.position.x > transform.position.x) {
-                transform.position += Vector3.right * distance;
+            if (mainCamera.transform.position.x > transform.position.x) {
+                foreach(var bg in BgList)
+                    bg.position += movement;
             } else {
-                transform.position += Vector3.left * distance;
+                foreach(var bg in BgList)
+                    bg.position -= movement;
             }
         }
-        catch (System.NullReferenceException) 
+        catch (UnityEngine.MissingReferenceException) 
         {
             return;
         }

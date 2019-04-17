@@ -62,4 +62,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UI/In Game/InGameUI.unity
     guid: 3cf8b0690c805584495af738315f73d4
+  - enabled: 1
+    path: Assets/Enemies/Pickleman Bull/PicklemanBullScene.unity
+    guid: eedc36ce8b3d68e4d9294e9bec7e64ba
+  - enabled: 1
+    path: Assets/Enemies/Hammer Joe/HammerJoeScene.unity
+    guid: 38187cffb945077489a75c9036290b6d
   m_configObjects: {}
