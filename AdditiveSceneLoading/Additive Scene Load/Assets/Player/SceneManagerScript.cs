@@ -22,6 +22,13 @@ public class SceneManagerScript : MonoBehaviour
     float totalSpawnRate;
     bool finalized;
     public GameStyles GameStyle;
+    public bool isLevelCompleted
+    {
+        get
+        {
+            return finalized;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

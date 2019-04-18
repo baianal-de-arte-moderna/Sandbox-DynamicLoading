@@ -7,6 +7,14 @@ public class EnemyStatusScript : MonoBehaviour
 {
     public int hp;
     public GameObject[] DeathObjects;
+    Transform trans;
+    Camera mainCamera;
+
+    void Start()
+    {
+        trans = transform;
+        mainCamera = Camera.main;
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,6 +35,9 @@ public class EnemyStatusScript : MonoBehaviour
             }
             gameObject.SetActive(false);
             Unload();
+        }
+        if (trans.position.x - mainCamera.transform.position.x > 60f) {
+            Destroy(gameObject);
         }
     }
 

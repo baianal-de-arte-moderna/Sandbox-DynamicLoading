@@ -9,6 +9,7 @@ TagManager:
   - EnemyBullet
   - Enemy
   - Scrap
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - EnemyBullet
   - Scrap
   - ScrapCollider
-  - 
+  - Door
   - 
   - 
   - 

@@ -5,9 +5,20 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     Rigidbody2D rigid;
+    Transform trans;
+    Camera mainCamera;
     void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();   
+        rigid = GetComponent<Rigidbody2D>();
+        trans = transform;
+        mainCamera = Camera.main;
+    }
+
+    void Update()
+    {
+        if (trans.position.x - mainCamera.transform.position.x > 10f) {
+            Destroy(gameObject);
+        }
     }
 
     public void Shoot(Vector2 direction, float speed) 
