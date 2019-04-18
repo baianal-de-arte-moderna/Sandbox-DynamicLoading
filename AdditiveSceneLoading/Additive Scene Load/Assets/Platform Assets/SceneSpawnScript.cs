@@ -16,7 +16,8 @@ public class SceneSpawnScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         collid.enabled = false;
-        SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
+        if (SceneManagerScript.GM.NextSceneSpot.position.y >= -10f)
+            SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
     }
     void OnEnable()
     {
@@ -26,9 +27,9 @@ public class SceneSpawnScript : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         var rootObject = scene.GetRootGameObjects()[0];
-        if (SceneManagerScript.GM) 
+        if (SceneManagerScript.GM)
         {
-            if (SceneManagerScript.GM.NextSceneSpot != null) 
+            if (SceneManagerScript.GM.NextSceneSpot != null)
             {
                 rootObject.transform.position = SceneManagerScript.GM.NextSceneSpot.position;
             }

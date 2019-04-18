@@ -12,17 +12,21 @@ public class SceneManagerScript : MonoBehaviour
     }
     public static SceneManagerScript GM;
     public Transform NextSceneSpot;
+    public PlayerRefScript playerRef;
+    public int PlatformEnd;
     [SerializeField]
     int[] EnemyList;
     [Range(0f, 1f)]
     [SerializeField]
     float[] SpawnRate;
     float totalSpawnRate;
+    bool finalized;
     public GameStyles GameStyle;
     // Start is called before the first frame update
     void Start()
     {
         totalSpawnRate = SpawnRate.Sum();
+        finalized = false;
 
         if (GM == null) 
         {
@@ -61,5 +65,14 @@ public class SceneManagerScript : MonoBehaviour
             }
         }
         return EnemyList[0];
+    }
+
+    public void FinalizePlatformSpawning()
+    {
+        if (!finalized)
+        {
+            finalized = true;
+            SceneManager.LoadSceneAsync(PlatformEnd, LoadSceneMode.Additive);
+        }
     }
 }

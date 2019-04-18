@@ -9,12 +9,14 @@ public class PlayerRefScript : MonoBehaviour
     public Vector2 scale;
     public SpriteRenderer charAnimator;
     Vector3 minPos;
+    Vector3 maxPos;
     float targetX;
     float baseX;
 
     void Start()
     {
         minPos = transform.position;
+        maxPos = Vector3.right * int.MaxValue;
         baseX = offset.x;
     }
 
@@ -39,6 +41,13 @@ public class PlayerRefScript : MonoBehaviour
         );
         if (newPos.x < minPos.x)
             newPos.x = minPos.x;
+        if (newPos.x > maxPos.x)
+            newPos.x = maxPos.x;
         transform.position = newPos;
+    }
+
+    public void SetMaxCameraPos(Vector3 newMaxPos)
+    {
+        maxPos = newMaxPos;
     }
 }

@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/PlatformSpawnStyle/Background/bgScene.unity
     guid: 3889489c41a31264e9f6272db00c3416
   - enabled: 1
-    path: Assets/PlatformSpawnStyle/Platform 0/Platform0Scene.unity
+    path: Assets/PlatformSpawnStyle/Platform Start/Platform0Scene.unity
     guid: f619ac10031f5d14bbb22ebae8d1e302
   - enabled: 1
     path: Assets/PlatformSpawnStyle/Platform 1/Platform1Scene.unity
@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Start Animation/Ready/ReadyScene.unity
     guid: 17e48bda3d511154ab87ba0ee0878fb8
+  - enabled: 1
+    path: Assets/PlatformSpawnStyle/Platform End/PlatformEndScene.unity
+    guid: a891b8ac6107e344aaccb374eb25dbbe
   m_configObjects: {}

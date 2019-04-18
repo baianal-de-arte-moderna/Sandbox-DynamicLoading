@@ -33,6 +33,7 @@ public class PlayerScript : MonoBehaviour
         grounded = 0;
 
         status.onHealthChange += HealthChange;
+        status.onScrapChange += ScrapChange;
 
         points = new Collider2D[10];
         // Only Down Collisions
@@ -167,5 +168,14 @@ public class PlayerScript : MonoBehaviour
             //animator.SetBool("Running", false);
             //animator.SetBool("Shooting", false);
         }
+    }
+
+    void ScrapChange(int newScrap, int oldScrap)
+    {
+        if (newScrap >= 100)
+        {
+            SceneManagerScript.GM.FinalizePlatformSpawning();
+        }
+            
     }
 }
