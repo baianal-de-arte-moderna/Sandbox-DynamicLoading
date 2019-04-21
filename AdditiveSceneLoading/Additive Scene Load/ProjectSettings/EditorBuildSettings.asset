@@ -74,4 +74,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PlatformSpawnStyle/Platform End/PlatformEndScene.unity
     guid: a891b8ac6107e344aaccb374eb25dbbe
+  - enabled: 1
+    path: Assets/Bosses/swarm/SwarmScene.unity
+    guid: b08d9a199164dd145b337178cdc97c2e
   m_configObjects: {}

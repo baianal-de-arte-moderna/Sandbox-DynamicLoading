@@ -62,6 +62,7 @@ public class PlayerRefScript : MonoBehaviour
             if (Vector3.Distance(transform.position, fixedTarget) <= 0.1f) {
                 isSmooth = false;
                 transform.position = fixedTarget;
+                SceneManagerScript.GM.StartBossSequence();
             }
         }
     }

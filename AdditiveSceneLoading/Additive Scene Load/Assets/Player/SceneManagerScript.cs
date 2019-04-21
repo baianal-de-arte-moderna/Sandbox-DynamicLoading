@@ -14,14 +14,29 @@ public class SceneManagerScript : MonoBehaviour
     public Transform NextSceneSpot;
     public PlayerRefScript playerRef;
     public int PlatformEnd;
+
     [SerializeField]
     int[] EnemyList;
+
     [Range(0f, 1f)]
     [SerializeField]
     float[] SpawnRate;
     float totalSpawnRate;
+
+    [SerializeField]
+    int[] BossList;
+    int chosenBoss;
     bool finalized;
     public GameStyles GameStyle;
+    BossScript boss;
+    [HideInInspector]
+    public BossScript Boss
+    {
+        get
+        {
+            return boss;
+        }
+    }
     public bool isLevelCompleted
     {
         get
@@ -34,6 +49,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         totalSpawnRate = SpawnRate.Sum();
         finalized = false;
+        chosenBoss = -1;
 
         if (GM == null) 
         {
@@ -80,6 +96,37 @@ public class SceneManagerScript : MonoBehaviour
         {
             finalized = true;
             SceneManager.LoadSceneAsync(PlatformEnd, LoadSceneMode.Additive);
+            Invoke("LoadBossScene", 2f);
         }
+    }
+
+    public void LoadBossScene()
+    {
+        if (chosenBoss < 0)
+        {
+            chosenBoss = BossList[Random.Range(0, BossList.Length)];
+            SceneManager.sceneLoaded += SetBossScript;
+            SceneManager.LoadSceneAsync(chosenBoss, LoadSceneMode.Additive);
+        }
+    }
+    public void SetBossScript(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= SetBossScript;
+        var rootObject = scene.GetRootGameObjects()[0];
+        boss = rootObject.GetComponentInChildren<BossScript>();
+        boss.onFinishDeath += EndLevel;
+    }
+    public void StartBossSequence()
+    {
+        if (boss != null)
+        {
+            boss.StartPresentation();
+        }
+    }
+
+    public void EndLevel()
+    {
+        // TODO: Call end-level UI and Score
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }
