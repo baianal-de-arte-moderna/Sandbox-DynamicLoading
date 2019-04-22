@@ -17,7 +17,7 @@ public class BossScript : MonoBehaviour
     // AUXILIARY GAME OBJECTS AND COMPONENTS
     //=====================
     BossHitScript hit;
-    public GameObject PresentationObject;
+    public BossPresentationScript PresentationScript;
     public BossDeathScript DeathScript;
 
     //=====================
@@ -46,12 +46,13 @@ public class BossScript : MonoBehaviour
     public void StartPresentation()
     {
         animator.SetTrigger("Start");
-        // TODO: Temporary Start Fight Trigger while there is no real presentation
-        Invoke("StartFight", 5f);
+        PresentationScript.onFinishSequence += StartFight;
+        PresentationScript.StartSequence();
     }
 
     public void StartFight()
     {
+        PresentationScript.onFinishSequence -= StartFight;
         if (onFinishPresentation != null)
         {
             onFinishPresentation();

@@ -9,6 +9,7 @@ public class SwarmScript : MonoBehaviour
     SpriteRenderer render;
     public Animator aimAnimator;
     Rigidbody2D rigid;
+    Transform PlayerReference;
     BossScript boss;
     float distance;
     bool fighting;
@@ -19,6 +20,8 @@ public class SwarmScript : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         boss = GetComponent<BossScript>();
         render = GetComponent<SpriteRenderer>();
+
+        PlayerReference = GameObject.FindWithTag("Player").transform;
 
         boss.onFinishPresentation += StartFight;
         boss.onFinishFighting += EndFight;
@@ -32,7 +35,7 @@ public class SwarmScript : MonoBehaviour
         {
             rigid.velocity = Vector2.zero;
             SetNewSwarmDirection(Random.insideUnitCircle);
-            SetAttackTarget(transform.parent.position);
+            SetAttackTarget(PlayerReference.position);
             Invoke("Attack", Random.Range(1f, 2f));
         }
     }
