@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoBehaviour
 {
+    public delegate void TimeChange(float newTime);
     public enum GameStyles {
         PLATFORM_STYLE,
         LEVEL_STYLE
@@ -13,6 +14,7 @@ public class SceneManagerScript : MonoBehaviour
     public static SceneManagerScript GM;
     public Transform NextSceneSpot;
     public PlayerRefScript playerRef;
+    public PlayerStatusScript playerStatus;
     public int PlatformEnd;
 
     [SerializeField]
@@ -27,6 +29,7 @@ public class SceneManagerScript : MonoBehaviour
     int[] BossList;
     int chosenBoss;
     bool finalized;
+    bool bossFinalized;
     public GameStyles GameStyle;
     BossScript boss;
     [HideInInspector]
@@ -44,12 +47,43 @@ public class SceneManagerScript : MonoBehaviour
             return finalized;
         }
     }
-    // Start is called before the first frame update
+
+    //==========================
+    // SCORE
+    //==========================
+    public float levelStartTime;
+    float _remainingTime;
+    [HideInInspector]
+    public float remainingTime
+    {
+        get
+        {
+            return _remainingTime;
+        }
+        set
+        {
+            _remainingTime = value;
+            if (onTimeChange != null)
+            {
+                onTimeChange(value);
+            }
+        }
+    }
+    public TimeChange onTimeChange;
+    [HideInInspector]
+    public int missedShots;
+    [HideInInspector]
+    public int hittedShots;
     void Start()
     {
         totalSpawnRate = SpawnRate.Sum();
         finalized = false;
+        bossFinalized = false;
         chosenBoss = -1;
+
+        remainingTime = levelStartTime;
+        missedShots = 0;
+        hittedShots = 0;
 
         if (GM == null) 
         {
@@ -73,6 +107,12 @@ public class SceneManagerScript : MonoBehaviour
             // Level
             SceneManager.LoadScene(16, LoadSceneMode.Additive);
         }
+    }
+
+    void Update()
+    {
+        if (!bossFinalized)
+            remainingTime -= Time.deltaTime;
     }
 
     // Randomizes one enemy from the list based on their spawn rates
@@ -126,7 +166,12 @@ public class SceneManagerScript : MonoBehaviour
 
     public void EndLevel()
     {
-        // TODO: Call end-level UI and Score
+        bossFinalized = true;
+        SceneManager.LoadScene(24, LoadSceneMode.Additive);
+    }
+
+    public void RestartLevel()
+    {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }

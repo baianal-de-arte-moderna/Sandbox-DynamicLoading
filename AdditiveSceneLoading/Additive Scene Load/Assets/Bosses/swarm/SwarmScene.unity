@@ -5364,7 +5364,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   render:
   - {fileID: 1121111360}
-  anim: []
+  anim:
+  - {fileID: 1121111361}
   particles:
   - {fileID: 89532592}
   sequenceDuration: 5

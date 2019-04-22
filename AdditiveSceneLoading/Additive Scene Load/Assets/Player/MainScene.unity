@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextSceneSpot: {fileID: 0}
   playerRef: {fileID: 1831846045}
+  playerStatus: {fileID: 432508672}
   PlatformEnd: 22
   EnemyList: 110000001300000014000000
   SpawnRate:
@@ -151,6 +152,9 @@ MonoBehaviour:
   - 0.554
   BossList: 17000000
   GameStyle: 0
+  levelStartTime: 300
+  missedShots: 0
+  hittedShots: 0
 --- !u!4 &112086848
 Transform:
   m_ObjectHideFlags: 0

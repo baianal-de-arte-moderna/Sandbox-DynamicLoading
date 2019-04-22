@@ -77,4 +77,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Bosses/swarm/SwarmScene.unity
     guid: b08d9a199164dd145b337178cdc97c2e
+  - enabled: 1
+    path: Assets/UI/End Level/EndLevelScene.unity
+    guid: abd501e801f023a40acdc666d8e8379e
   m_configObjects: {}
