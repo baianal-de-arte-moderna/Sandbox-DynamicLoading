@@ -4768,7 +4768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe2815e0df46c44b848d05e84d60e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  value: 2
 --- !u!1 &7729298601133093065
 GameObject:
   m_ObjectHideFlags: 0
@@ -4886,6 +4886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2b0cd02752b4b4596c57a410bbfca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerCollider: {fileID: 3075441519714236226}
   particles: {fileID: 3776808062105187777}
 --- !u!61 &7746450738836628303
 BoxCollider2D:

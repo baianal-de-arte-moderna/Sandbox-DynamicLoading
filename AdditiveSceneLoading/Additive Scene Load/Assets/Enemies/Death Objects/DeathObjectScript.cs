@@ -7,6 +7,7 @@ public class DeathObjectScript : MonoBehaviour
     Vector2 direction;
     float force;
     Rigidbody2D rigid;
+    public Collider2D triggerCollider;
     SpriteRenderer render;
     public ParticleSystem particles;
     float colorSpeed;
@@ -44,16 +45,14 @@ public class DeathObjectScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        triggerCollider.enabled = false;
+        if (particles)
         {
-            if (particles)
-            {
-                // Reset particles rotation so animation plays in the right direction
-                particles.transform.rotation = Quaternion.identity;
-                particles.Play();
-            }
-            colorSpeed = 0.05f;
-            rigid.velocity = Vector2.zero;
+            // Reset particles rotation so animation plays in the right direction
+            particles.transform.rotation = Quaternion.identity;
+            particles.Play();
         }
+        colorSpeed = 0.05f;
+        rigid.velocity = Vector2.zero;
     }
 }
