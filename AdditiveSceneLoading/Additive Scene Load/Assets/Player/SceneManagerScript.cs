@@ -172,6 +172,6 @@ public class SceneManagerScript : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene(25, LoadSceneMode.Single);
     }
 }
